@@ -1,0 +1,1118 @@
+@font-face {
+    font-family: "BigNoodleTitling";
+    src: url("../fonts/big_noodle_titling.woff2") format("woff2");
+}
+@font-face {
+    font-family: "AkiraExpanded";
+    src: url("../fonts/akira_expanded.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Anton";
+    src: url("../fonts/Anton-Regular.woff2") format("woff2");
+}
+
+/* Variables */
+:root {
+    --default-font: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
+    --border-width: 2px;
+    --border-radius: 12px;
+    --bg-dark: #201f2d;
+    --bg-darker: #1b1924;
+    --subheader: #b0aebd;
+    --transition: 0.5s;
+    --intro-delay: 3s;
+    --transition-function: cubic-bezier(.15,0,0,1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    margin-right: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: #b7f5ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a5a0ea;
+    border-radius: 10px;
+    border: 4px solid #b7f5ff;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #a5a0ea; 
+    border: 2px solid #b7f5ff;
+} 
+::-webkit-scrollbar-thumb:active {
+    background: #a5a0ea; 
+}
+
+/* Intro animation */
+@keyframes no-scroll {
+    0% {
+        overflow: hidden;
+    }
+    100% {
+        overflow: hidden;
+    }
+}
+@keyframes swipe {
+    0% {
+        transform: rotate(45deg) translateX(-25%);
+    }
+    75% {
+        transform: rotate(45deg) translateX(-25%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+@keyframes swipe-end {
+    0% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes intro-1 {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+@keyframes intro-2 {
+    0% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes intro-3 {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes bblFadInOut {
+    0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+    40% { box-shadow: 0 2.5em 0 0 }
+}  
+/* Set up page */
+html {
+    font-family: var(--default-font);
+    scroll-behavior: smooth;
+}
+body {
+    /* For the initial animation, scroll is disabled */
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    animation: no-scroll var(--intro-delay);
+}
+canvas {
+    /* The secret sauce */
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    filter: hue-rotate(5deg) opacity(0.9);
+    z-index: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "AkiraExpanded";
+    z-index: 10;
+}
+div, section {
+    z-index: 1;
+}
+section {
+    position: relative;
+}
+section h1 {
+    text-transform: uppercase;
+}
+section .content {
+    background-color: var(--bg-darker);
+}
+section h1:not(#about h1):not(#allout h1) {
+    color: var(--subheader);
+    font-size: 2rem;
+    margin: 8rem 4rem 2rem 4rem;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 780px) {
+    .allout-description {
+        clip-path: none;
+    }
+    .allout-tracklist {
+        margin-top: 4rem;
+    }
+    .menu {
+        display: none;
+    }
+    .menu-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+}
+@media (min-width: 780px) {
+    .menu-mobile {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    #about > * {
+        max-width: 540px;
+    }
+}
+
+/* Two buttons */
+a.button {
+    all: unset;
+    cursor: pointer;
+    padding: 18px 64px;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "BigNoodleTitling", sans-serif;
+    letter-spacing: 2px;
+}
+a.button.light {
+    background-color: white;
+    font-family: var(--default-font);
+    letter-spacing: initial;
+    font-weight: bold;
+    color: var(--bg-dark);
+}
+a.button.dark {
+    background-color: var(--bg-dark);
+    color: white;
+}
+
+/* Background blur */
+.backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(12px);
+}
+
+/* Layouts */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* K/DA logo */
+.logo {
+    width: 15rem;
+    z-index: 100;
+    color: white;
+    animation: intro-1 2s var(--transition-function), intro-2 1s var(--transition-function) 2s;
+}
+/* Background swipe after delay is finished */
+.bg-anim-swipe {
+    position: fixed;
+    width: 5000px;
+    height: 5000px;
+    background: linear-gradient(90deg, #201f2d 0%, #1b1924 100%);
+    transform: rotate(45deg) translateX(100%);
+    animation: swipe var(--intro-delay) var(--transition-function);
+}
+.rect.top, .rect.bottom, #title .arrows, #title a.button {
+    animation: intro-3 var(--intro-delay) ease-in-out;
+}
+/* Loading animation */
+.loader, .loader:before, .loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+.loader {
+    color: #FFF;
+    font-size: 7px;
+    position: relative;
+    text-indent: -9999em;
+    margin-top: 2em;
+    transform: translateZ(0);
+    opacity: 0;
+    animation: bblFadInOut 1.8s infinite ease-in-out -0.16s, swipe-end var(--intro-delay) var(--transition-function);
+}
+
+.loader:before,
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+}
+.loader:before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+}
+.loader:after {
+    left: 3.5em;
+}
+
+/* Title border overlay, also used as mobile menu */
+#title {
+    height: 100vh;
+}
+#title .container {
+    height: 90%;
+}
+.rect {
+    position: absolute;
+    margin: 32px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+#title .rect.top {
+    margin-bottom: 96px;
+    border-top: var(--border-width) solid white;
+    border-left: var(--border-width) solid white;
+    border-bottom: var(--border-width) solid white;
+    border-radius: var(--border-radius) 0px 0px var(--border-radius);
+    clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0);
+}
+#title .rect.bottom {
+    bottom: 0;
+    margin-top: auto;
+    height: 62.5px;
+    border-bottom: var(--border-width) solid white;
+    border-right: var(--border-width) solid white;
+    border-top: var(--border-width) solid white;
+    border-left: var(--border-width) solid transparent;
+    border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 5%, 5% 0);
+    transition-property: height, backdrop-filter, border-left, clip-path;
+    transition-duration: var(--transition);
+    transition-timing-function: var(--transition-function);
+}
+#title .rect.bottom:has(.menu-mobile[data-active="true"]) {
+    height: 50%;
+    backdrop-filter: blur(16px);
+    border-left: var(--border-width) solid white;
+    clip-path: none;
+}
+#title .content {
+    transform: translateY(64px);
+}
+#title a.button {
+    margin-top: 96px;
+}
+#title .arrows {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+}
+
+/* Arrows under button */
+.arrow {
+    border: solid white;
+    border-width: 0 var(--border-width) var(--border-width) 0;
+    display: inline-block;
+    padding: 8px;
+    transform: rotate(45deg);
+}
+.arrows .arrow:nth-child(1) {
+    opacity: 0.5;
+}
+.arrows .arrow:nth-child(2) {
+    opacity: 0.75;
+}
+
+/* Bottom rectangle */
+.rect.bottom {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.rect.bottom img {
+    padding: 8px;
+    height: -moz-available;        
+    height: -webkit-fill-available;
+}
+
+/* Nav menu */
+.menu {
+    align-items: center;
+    justify-content: start;
+}
+.menu a, .menu-content a {
+    font-family: "BigNoodleTitling", Arial, sans-serif;
+    font-size: 1.75rem;
+    padding: 8px 16px;
+    text-wrap: nowrap;
+    pointer-events: all !important;
+    transition: background-color var(--transition), border-radius var(--transition);
+}
+.menu a:hover, .menu-content a:hover, 
+.menu a:active, .menu-content a:active, 
+.menu a:focus, .menu-content a:focus {
+    background-color: var(--bg-dark);
+    border-radius: 6.4px;
+}
+/* Mobile nav menu */
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 50%;
+    opacity: 0;
+    transition: opacity var(--transition) var(--transition-function);
+}
+.menu-mobile[data-active="true"] .menu-content {
+    opacity: 1;
+}
+
+/* Hamburger menu */
+.bars {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.bars-container {
+    height: 32px;
+    width: 32px;
+}
+.bars-container > span {
+    position: absolute;
+    height: 2px;
+    width: 20px;
+    margin-left: 6px;
+    background-color: white;
+    transition: transform 0.5s ease-in-out;
+}
+.bars-container > .top {
+    margin-top: 8px;
+}
+.bars-container > .middle-front, .bars-container > .middle-back {
+    margin-top: 16px;
+}
+.bars-container > .bottom {
+    margin-top: 24px;
+}
+
+/* Mobile menu activation */
+.menu-mobile[active="true"] {
+    height: 320px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.menu-mobile[active="true"] > .bars > .bars-container > .top {
+    transform: scaleX(0);
+}
+.menu-mobile[active="true"] > .bars > .bars-container > .middle-front {
+    transform: rotate(45deg);
+}
+.menu-mobile[active="true"] > .bars > .bars-container > .middle-back {
+    transform: rotate(-45deg);
+}
+.menu-mobile[active="true"] > .bars > .bars-container > .bottom {
+    transform: scaleX(0);
+}
+.logos-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 62.5px;
+}
+.logos-container .logos {
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+/* About section */
+#about {
+    background-color: white;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    line-height: 1.75rem;
+}
+#about > h1 {
+    font-size: 3rem;
+    letter-spacing: 0.25rem;
+    line-height: 3rem;
+}
+#about > * {
+    max-width: 960px;
+}
+
+/* MORE track section */
+#more {
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+.more-header {
+    position: relative;
+    top: -2rem;
+    left: -2rem;
+    width: calc(100% + 4rem); 
+    margin-bottom: -2rem;
+}
+.more-header img {
+    width: 100%;
+    object-fit: cover;
+}
+#more .rect, #members .rect {
+    border: var(--border-width) solid white;
+    border-radius: var(--border-radius);
+}
+#more .content {
+    position: relative;
+    top: 0;
+    margin-left: -2rem;
+    margin-right: -2rem;
+}
+#more .content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/SVG/logos_bg.svg") no-repeat top center;
+    background-size: 150%;
+    z-index: 1;
+}
+
+/* 
+    YouTube's iFrame
+    ps. sorry for console spam, Adblock users...
+*/
+.video {
+    margin: 0 4rem;
+    max-width: 960px;
+}
+.video > iframe {
+    height: auto;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+/* Musical platforms */
+.platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 2rem 4rem;
+    max-width: 960px;
+    width: calc(100% - 8rem);
+}
+.platforms img {
+    margin: 1rem;
+    width: 160px;
+}
+
+/* The Baddest track section */
+.baddest-header {
+    position: relative;
+    top: -2rem;
+    box-shadow: inset 0 -2px 0 white;
+    backdrop-filter: brightness(1.5);
+}
+#baddest .content {
+    margin-top: -2rem;
+}
+#baddest .video {
+    box-shadow: 0 0 128px #302f40;
+}
+
+/* Pop/Stars track section */
+#popstars {
+    background-color: var(--bg-darker);
+    padding-bottom: 10rem;
+}
+#popstars::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/SVG/logos_bg.svg") no-repeat top center;
+    background-size: 150%;
+    z-index: 1;
+}
+.popstars-header {
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popstars-header > * {
+    z-index: 10;
+}
+.popstars-header > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #d4f3ff !important;
+    text-shadow: 0 0 16px rgba(255 255 255 / 0.5);
+}
+.popstars-header > img {
+    filter: drop-shadow(0 0 64px rgba(209, 59, 255, 0.5));
+    margin: 0 1rem;
+}
+#popstars .video {
+    box-shadow: 0 0 160px #686596;
+}
+
+/* ALL OUT album section */
+#allout {
+    margin: 4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.allout-description {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 50%;
+    color: white;
+    padding-left: 2rem; 
+    background-color: var(--bg-darker);
+    clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+    flex-grow: 2;
+    flex-shrink: 0;
+}
+#allout h1 {
+    margin: 3rem 3rem 0 0;
+}
+#allout h3 {
+    margin: 0 0 3rem 0;
+}
+#allout p {
+    margin: 0 0 4rem 0;
+}
+#allout a.button {
+    margin: 0 0 2rem 0;
+}
+.allout-tracklist {
+    flex-shrink: 1;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.allout-tracklist img {
+    max-height: 360px;
+    object-fit: cover;
+    box-shadow: 0 0 32px rgba(0 0 0 / 0.5);
+} 
+
+/* 
+    Gonna leave Members' media queries here
+    Aligning this was a pain, 
+    but it was so worth it
+*/
+@media (max-width: 540px) {
+    .member-description p {
+        font-size: 1rem !important;
+    }
+    .member-switcher {
+        justify-content: center;
+    }
+    .member-switcher > * {
+        margin: 0 !important;
+    }
+    .member-switcher img {
+        margin: 0.25rem !important;
+    }
+    .member-description {
+        margin: 1rem !important;
+    }
+    .member-photo {
+        padding: 1rem !important;
+    }
+    #members {
+        padding: 1rem !important;
+    }
+    #members .rect {
+        margin: 1rem !important;
+    }
+}
+@media (max-width: 990px) {
+    .member-switcher > * {
+        margin: 0.5rem;
+    }
+    .member-switcher img {
+        margin: 0.25rem;
+    }
+    .member-description p {
+        font-size: 1rem;
+    }
+    #members {
+        height: auto;
+    }
+    .members-content {
+        flex-wrap: wrap;
+    }
+    .member-description {
+        width: 100%;
+    }
+    .switcher {
+        order: 1;
+    }
+    .member-photo {
+        width: 100%;
+        flex: 1 1;
+        max-height: calc(100vh - 8rem);
+    }
+    .member-photo > img {
+        order: 2;
+    }
+    .member-switcher {
+        order: 1;
+        position: inherit;
+    }
+}
+@media (min-width: 990px) {
+    .member-switcher > * {
+        margin: 1rem;
+    }
+    .member-switcher img {
+        margin: 0.5rem;
+    }
+    .member-description p {
+        font-size: 1.25rem;
+    }
+    #members {
+        /*  
+            For some reason, this stupid div
+            decided that it won't apply top margin
+            to the first child, forcing me to use
+            padding and calculating the height :c
+
+            And everywhere in the file, if you find this mess,
+            it means that there was some wild padding/margin
+            that I had to fix it with calc
+        */
+        height: calc(100vh - 4rem); 
+    }
+    .member-description {
+        width: 30%;
+        flex: 1 1;
+    }
+    .member-switcher {
+        position: absolute;
+    }
+    #members .header > h1 {
+        font-size: 4rem !important;
+    }
+}
+@media (min-width: 990px) and (max-width: 1280px) {
+    .members-content {
+        height: calc(100vh - 4rem);
+    }
+    .member-photo {
+        flex: 1 0;
+    }
+    .member-switcher {
+        bottom: 5%;
+    }
+}
+@media (min-width: 1280px) {
+    .members-content {
+        flex-wrap: nowrap;
+        height: calc(100vh - 4rem);
+    }
+    .member-photo {
+        flex: 2 0;
+    }
+    .member-switcher {
+        bottom: 10%;
+    }
+}
+
+/* Just hope that those queries won't override 
+something bellow... */
+
+/* Members section */
+#members {
+    background-color: var(--bg-darker);
+    padding: 2rem;
+}
+#members .header {
+    margin: 1rem 0;
+}
+.logos {
+    display: flex;
+}
+#members .header .logos > * {
+    height: 24px;
+    margin: 0 0.1rem;
+    opacity: 0.25;
+}
+#members .header > h1 {
+    margin: 0 !important;
+    color: white !important;
+}
+#members h2 {
+    font-size: 3rem;
+    margin: 0;
+    color: white;
+}
+#members .member-description img {
+    height: 48px;
+}
+#members .member-description .row img {
+    margin: 1rem;
+}
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.members-content {
+    display: flex;
+}
+.member-description {
+    margin: 4rem 2rem;
+}
+.member-description p {
+    font-family: var(--default-font); 
+    color: white;
+}
+#members .row {
+    margin-top: 4rem;
+}
+.member-photo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+.member-photo > img {
+    object-fit: contain;
+    width: 100%;
+    height: calc(100% - 2rem);
+    filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 192px rgba(227, 184, 255, 0.25));
+    opacity: 1;
+    transition: opacity var(--transition), filter var(--transition);
+    flex: 1 0;
+}
+.member-photo > img:hover {
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 160px rgba(227, 184, 255, 0.25));
+}
+.member-photo > img[data-visible="false"] {
+    opacity: 0;
+}
+.member-photo > img[data-visible="true"] {
+    opacity: 1;
+}
+.switcher {
+    display: flex;
+    justify-content: space-between;
+    width: 256px;
+    flex: 0 1;
+}
+.switcher a {
+    font-family: var(--default-font);
+    color: white;
+    cursor: pointer;
+}
+.switcher a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    transition: transform var(--transition);
+}
+.switcher a[data-selected="false"]::after {
+    transform: scaleX(0);
+}
+.switcher a[data-selected="true"]::after {
+    transform: scaleX(1);
+}
+.member-switcher {
+    display: flex;
+    align-items: center;
+}
+.member-switcher > * {
+    cursor: pointer;
+}
+.member-switcher img[data-selected="false"] {
+    opacity: 0.5;
+}
+.arrow.left {
+    transform: rotate(135deg);
+}
+.arrow.right {
+    transform: rotate(-45deg);
+}
+
+/* 
+    Riot's footer
+    It's not illegal, if it's "free use"
+    (not copyright advice)
+
+    Also, Riot apparently have lots of 
+    unused classes that were trimmed out of here
+*/
+footer {
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "FF Mark W05", Arial, sans-serif;
+    color: #f9f9f9;
+    z-index: 10;
+}
+.footer-content {
+    background-color: #111;
+    padding: 0px 0px 48px 0px;
+    border-top: 2px solid #343434;
+}
+.footer-links {
+    user-select: none;
+    box-sizing: border-box;
+    font-family: "FF Mark W05", Arial, sans-serif;
+    background: var(--bg-dark);
+    padding: 24px;
+    margin: 0;
+    color: #7e7e7e;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer-links ul li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #f9f9f9;
+    transition: all .2s linear;
+}
+.footer-links ul li a:hover, 
+.footer-links ul li a:active, 
+.footer-links ul li a:focus {
+    background: rgba(128, 128, 128, .3);
+    border-radius: 6.4px;
+}
+.social-links {
+    user-select: none;
+    box-sizing: border-box;
+    padding: 18px 0;
+    user-select: none;
+    box-sizing: border-box;
+}
+.social-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.social-links ul li {
+    margin: 6px;
+    background-color: rgba(128, 128, 128, .2);
+    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    transition: all .2s linear;
+}
+/* Added colors to boring Riot links */
+.social-links ul li:has(.link-youtube:hover) {
+    background-color: #f00;
+}
+.social-links ul li:has(.link-twitter:hover) {
+    background-color: #1d9bf0;
+}
+.social-links ul li:has(.link-facebook:hover) {
+    background-color: #1775f1;
+}
+.social-links ul li:has(.link-instagram:hover) {
+    background-color: #e1306c;
+}
+.social-links ul li:has(.link-reddit:hover) {
+    background-color: #ff4500;
+}
+.social-links ul li a.link-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    height: 100%;
+}
+.social-links ul li a.link-social svg {
+    width: 16px;
+    height: 16px;
+    fill: #f9f9f9;
+    fill-rule: evenodd;
+}
+.footer-logos {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 24px 0px 20px;
+}
+.footer-logos a svg {
+    fill: #737373;
+}
+.footer-copyright {
+    font-family: "FF Mark W05", Arial, sans-serif;
+    margin: 0 auto;
+    max-width: 640px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 140%;
+    text-align: center;
+    word-break: keep-all;
+    color: #7e7e7e;
+}
+.footer-copyright .footer-copyright-text {
+    margin: 0px auto;
+}
+.footer-legal-links {
+    user-select: none;
+    box-sizing: border-box;
+    font-family: "FF Mark W05", Arial, sans-serif;
+    padding: 24px 0px 28px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.footer-legal-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer-legal-links ul li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #f9f9f9;
+    transition: all .2s linear;
+}
+.footer-legal-links ul li a:hover, .footer-legal-links ul li a:active, .footer-legal-links ul li a:focus {
+    background: rgba(128, 128, 128, .3);
+    border-radius: 6.4px;
+}
+
+/* Scroll to top button */
+.fab-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+    background-color: var(--bg-dark);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.25s ease-in-out;
+}
+.fab-top[data-visible="true"] {
+    transform: scale(1);
+}
+.fab-top[data-visible="false"] {
+    transform: scale(0);
+}
+.fab-top::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: solid white;
+    border-width: 0 var(--border-width) var(--border-width) 0;
+    display: inline-block;
+    margin: 8px;
+    transform: rotate(-135deg);
+}
