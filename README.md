@@ -1,3 +1,3 @@
 # ITW Project 2
 
-Online demo: https://cumbala.gihtub.io/kda
+Online demo: https://cumbala.github.io/kda
