@@ -1,34 +1,13 @@
-const images = [
-    "img/ahri/allout.png",
-    "img/ahri/baddest.png",
-    "img/ahri/popstars.png",
-
-    "img/akali/allout.png",
-    "img/akali/baddest.png",
-    "img/akali/popstars.png",
-
-    "img/evelynn/allout.png",
-    "img/evelynn/baddest.png",
-    "img/evelynn/popstars.png",
-
-    "img/kaisa/allout.png",
-    "img/kaisa/baddest.png",
-    "img/kaisa/popstars.png",
-
+[
+    "img/ahri/allout.webp", "img/ahri/baddest.webp", "img/ahri/popstars.webp",
+    "img/akali/allout.webp", "img/akali/baddest.webp", "img/akali/popstars.webp",
+    "img/evelynn/allout.webp", "img/evelynn/baddest.webp", "img/evelynn/popstars.webp",
+    "img/kaisa/allout.webp", "img/kaisa/baddest.webp", "img/kaisa/popstars.webp",
     "img/allout-tracklist.jpg"
-]
-
-for (let url of images) {
+].forEach(url => {
     let img = new Image()
     img.src = url
-}
-
-window.addEventListener("scroll", (event) => {
-    const scroll = window.scrollY
-    const fabTop = $(".fab-top")
-    if (scroll > 128) {
-        fabTop.dataset.visible = "true"
-    } else {
-        fabTop.dataset.visible = "false"
-    }
+})
+window.addEventListener("scroll", () => {
+    $(".fab-top").dataset.visible = `${window.scrollY > 128}`
 })

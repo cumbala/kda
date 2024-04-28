@@ -492,7 +492,7 @@ a.button.dark {
     top: -2rem;
     left: -2rem;
     width: calc(100% + 4rem); 
-    margin-bottom: -2.25rem;
+    margin-bottom: -2.5rem;
 }
 .more-header img {
     width: 100%;
@@ -556,7 +556,7 @@ a.button.dark {
     top: -2rem;
 }
 #baddest .content {
-    margin-top: -2.25rem;
+    margin-top: -2.5rem;
 }
 #baddest .video {
     box-shadow: 0 0 128px #302f40;

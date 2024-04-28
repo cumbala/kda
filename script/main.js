@@ -1,6 +1,3 @@
-/// member.img[0] - All Out
-/// member.img[1] - The Baddest
-/// member.img[2] - Pop/Stars
 const membersData = [
     {
         name: "Ahri",
@@ -8,9 +5,9 @@ const membersData = [
         description: "After rising to fame as a teenage pop star, Ahri tossed aside her girly and young look to reveal her new self: a high fashion, elegant, and stunning celebrity. As the leader, founder, and main vocalist of K/DA, Ahri graces the stage with confident charm. The calm center of the group, she values authentic self-expression and encourages her team to do the same. Ahri takes pride in discovering new talents and shaping them towards their full potential.",
         icon: "img/SVG/Ahri.svg",
         images: [
-            { src: "img/ahri/allout.png", alt: "Ahri (All Out)"},
-            { src: "img/ahri/baddest.png", alt: "Ahri (The Baddest)"},
-            { src: "img/ahri/popstars.png", alt: "Ahri (Pop/Stars)"},
+            { src: "img/ahri/allout.webp", alt: "Ahri (All Out)"},
+            { src: "img/ahri/baddest.webp", alt: "Ahri (The Baddest)"},
+            { src: "img/ahri/popstars.webp", alt: "Ahri (Pop/Stars)"},
         ]
     },
     {
@@ -19,9 +16,9 @@ const membersData = [
         description: "Akali makes appearances next to other street performers in cities she is visiting. Combining mixed martial arts and the beat of her own rap lyrics, she delights audiences with her bold lyrical rap and punk ninja style. She is the main rapper of the group, boasting street punk style with a brash, dangerous streak. She constantly keeps her team on their toes - and values her creative independence most of all. Akali’s always spinning on new projects and refuses to compromise for her art.",
         icon: "img/SVG/Akali.svg",
         images: [
-            { src: "img/akali/allout.png", alt: "Akali (All Out)"},
-            { src: "img/akali/baddest.png", alt: "Akali (The Baddest)"},
-            { src: "img/akali/popstars.png", alt: "Akali (Pop/Stars)"},
+            { src: "img/akali/allout.webp", alt: "Akali (All Out)"},
+            { src: "img/akali/baddest.webp", alt: "Akali (The Baddest)"},
+            { src: "img/akali/popstars.webp", alt: "Akali (Pop/Stars)"},
         ]
     },
     {
@@ -30,9 +27,9 @@ const membersData = [
         description: "Evelynn is the vocalist of K/DA and when she takes the stage, no one captivates fance more than her. Always the focus of the spotlight, the artist enjoys seeing the crowd's reactions to his masterfully sculpted image.<br>Evelynn, co-founder of K/DA with Ahri, persuades the group to take exciting risks in terms of style.",
         icon: "img/SVG/Evelynn.svg",
         images: [
-            { src: "img/evelynn/allout.png", alt: "Evelynn (All Out)"},
-            { src: "img/evelynn/baddest.png", alt: "Evelynn (The Baddest)"},
-            { src: "img/evelynn/popstars.png", alt: "Evelynn (Pop/Stars)"},
+            { src: "img/evelynn/allout.webp", alt: "Evelynn (All Out)"},
+            { src: "img/evelynn/baddest.webp", alt: "Evelynn (The Baddest)"},
+            { src: "img/evelynn/popstars.webp", alt: "Evelynn (Pop/Stars)"},
         ]
     },
     {
@@ -41,9 +38,9 @@ const membersData = [
         description: "As the main dancer and team choreographer, Kai'Sa strives for perfection. Her intense, quiet focus pushes the team forward with otherworldly concepts and pristine attention to detail.<br><br><i>\"When the music begins, a symphony of movement stirs in my being. My body reacts to the call, jumping to weave a story. A story to leave the void behind, and fall into the steps of life.</i>\"",
         icon: "img/SVG/Kaisa.svg",
         images: [
-            { src: "img/kaisa/allout.png", alt: "Kai'sa (All Out)"},
-            { src: "img/kaisa/baddest.png", alt: "Kai'sa (The Baddest)"},
-            { src: "img/kaisa/popstars.png", alt: "Kai'sa (Pop/Stars)"},
+            { src: "img/kaisa/allout.webp", alt: "Kai'sa (All Out)"},
+            { src: "img/kaisa/baddest.webp", alt: "Kai'sa (The Baddest)"},
+            { src: "img/kaisa/popstars.webp", alt: "Kai'sa (Pop/Stars)"},
         ]
     }
 ]
