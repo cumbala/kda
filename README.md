@@ -1,8 +1,5 @@
-# ITW Project 2
-
-Author: Romanets Konstantin (xroman18)
-Email: xroman18@stud.fit.vutbr.cz
-
-Total size was over 2 megabytes.
+# K/DA Fan-made Website
 
 Online demo: https://cumbala.github.io/kda
+
+Based on Vadim's Shvets [K/DA Website Design Concept](https://www.behance.net/gallery/159464503/KDA-WEBSITE-DESIGN-CONCEPT) on Behance. Slight adjustments to the concept has been made to fit the requirements of a given task.
